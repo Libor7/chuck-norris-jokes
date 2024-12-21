@@ -23,23 +23,21 @@ export const StyledNavLink = styled(NavLink).withConfig({
 })<StyledNavLinkProps>`
   color: ${({ color = "primary", colorMode = "main", theme }) =>
     theme.palette[color as keyof Theme["palette"]][colorMode]};
-  display: block;
-  font-size: 1.25em;
-  height: 100%;
-  padding: 0.375em 1em;
+  font-size: 1.5em;
+  padding: 0.25em 1em;
   text-decoration: none;
-  width: 100%;
-
-  &.active {
-    cursor: default;
-  }
-
-  &:not(.active) {
-    color: ${({ theme }) => theme.palette.primary.light};
-  }
 
   &:focus,
   &:focus-visible {
+    background-color: ${({ theme }) => theme.palette.primary.dark};
     outline: none;
+  }
+
+  ${({ theme }) => theme.breakpoints.up("sm")} {
+    padding: 1em;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.palette.primary.dark};
+    }
   }
 `;

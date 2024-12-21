@@ -14,7 +14,7 @@ export const StyledListItem = styled(ListItem).withConfig({
   shouldForwardProp: (prop) => notForwardProps.indexOf(prop) === -1,
 })<StyledListItemProps>`
   cursor: pointer;
-  font-size: 1.25em;
+  font-size: 1.5em;
 
   &.active {
     color: ${({ theme }) => theme.palette.primary.main};

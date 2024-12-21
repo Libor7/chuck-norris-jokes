@@ -9,10 +9,10 @@ interface StyledTypographyProps {
 }
 
 export const StyledTypography = styled(Typography)<StyledTypographyProps>`
-  color: ${({ theme }) => theme.palette.secondary.dark};
-  max-width: 500px;
+  color: ${({ theme }) => theme.palette.primary.main};
+  max-width: 750px;
 
   &.MuiTypography-root {
-    margin-bottom: 1.5em;
+    margin: 1.5em 0;
   }
 `;

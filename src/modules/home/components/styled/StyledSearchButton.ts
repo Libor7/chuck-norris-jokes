@@ -6,13 +6,13 @@ import styled from "styled-components";
 
 export const StyledSearchButton = styled(Button)`
   &.MuiButton-root {
-    background-color: ${({ theme }) => theme.palette.warning.main};
+    background-color: ${({ theme }) => theme.palette.secondary.main};
     border-radius: 0;
     margin-bottom: 2em;
-    max-width: 500px;
+    max-width: 350px;
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.palette.warning.dark};
+    background-color: ${({ theme }) => theme.palette.secondary.dark};
   }
 `;

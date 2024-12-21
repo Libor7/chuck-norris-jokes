@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 export const StyledSearchField = styled(TextField)`
   background-color: ${({ theme }) => theme.palette.primary.contrastText};
-  max-width: 500px;
+  max-width: 350px;
 
   &.MuiTextField-root * {
     border: none;

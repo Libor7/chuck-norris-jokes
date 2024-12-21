@@ -12,7 +12,7 @@ import useWindowSize from "@shared/hooks/useWindowSize";
 
 /** LIBRARIES */
 import { useEffect, useRef } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 
 /** MODELS */
 import { type ILink } from "@shared/models/miscellaneous";
@@ -21,6 +21,17 @@ import { type ILink } from "@shared/models/miscellaneous";
 import { useAppDispatch } from "@shared/store";
 import { sharedActions } from "@shared/store/shared";
 import { CONTENT } from "@shared/utils/content";
+
+/** STYLES */
+import styled from "styled-components";
+
+const StyledToolbar = styled(Toolbar)`
+  height: 100%;
+
+  & > .MuiTypography-root {
+    font-size: 2em;
+  }
+`;
 
 const { CATEGORIES, HOME } = CONTENT.LINKS;
 
@@ -37,10 +48,12 @@ const links: ILink[] = [
 
 const Header = () => {
   const appDispatch = useAppDispatch();
+  const { pathname } = useLocation();
   const { windowWidth } = useWindowSize();
   const appBarRef = useRef<HTMLElement>(null);
 
   const wideScreen = windowWidth >= 600;
+  const nonactiveLinks = links.filter((link) => link.path !== pathname.slice(1));
 
   useEffect(() => {
     if (appBarRef.current) {
@@ -53,11 +66,11 @@ const Header = () => {
   return (
     <>
       <AppBar position="static" ref={appBarRef}>
-        <Toolbar disableGutters>
-          {!wideScreen && <NavigationMobile links={links} />}
+        <StyledToolbar disableGutters>
+          {!wideScreen && <NavigationMobile links={nonactiveLinks} />}
           <AppHeading />
-          {wideScreen && <Navigation links={links} />}
-        </Toolbar>
+          {wideScreen && <Navigation links={nonactiveLinks} />}
+        </StyledToolbar>
       </AppBar>
       <Outlet />
     </>

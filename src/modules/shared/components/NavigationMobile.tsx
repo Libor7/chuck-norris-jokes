@@ -5,6 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 /** LIBRARIES */
 import { useCallback, useState, type FC } from "react";
+import { useNavigate } from "react-router";
 
 /** MODELS */
 import { type ILink } from "@shared/models/miscellaneous";
@@ -18,6 +19,7 @@ interface NavigationMobileProps {
 }
 
 const NavigationMobile: FC<NavigationMobileProps> = ({ links }) => {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const openMenu = useCallback(
@@ -59,7 +61,7 @@ const NavigationMobile: FC<NavigationMobileProps> = ({ links }) => {
         onClose={closeMenu}
       >
         {links.map(({ label, path }) => (
-          <StyledMenuItem key={path} onClick={closeMenu}>
+          <StyledMenuItem key={path} onClick={closeMenu} onKeyDown={({ key }) => key === "Enter" && navigate(path)}>
             <StyledNavLink key={path} to={path}>
               {label}
             </StyledNavLink>

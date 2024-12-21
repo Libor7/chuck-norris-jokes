@@ -3,9 +3,9 @@ import Pagination from "@mui/material/Pagination";
 
 /** CUSTOM COMPONENTS */
 import CategoriesContainer from "@categories/components/layout/CategoriesContainer";
-import InfoText from "@shared/components/UI/InfoText";
 import List from "@categories/components/List";
 import ResetButton from "@shared/components/UI/Button";
+import Text from "@shared/components/UI/Text";
 
 /** HOOKS */
 import useWindowSize from "@shared/hooks/useWindowSize";
@@ -56,7 +56,7 @@ const CategoriesContent: FC<CategoriesContentProps> = ({ items }) => {
   return (
     <StyledGrid headerHeight={appBarHeight}>
       <StyledHeading2>{CONTENT.HEADING}</StyledHeading2>
-      <InfoText text={categoryInfo} />
+      <Text text={categoryInfo} />
       {!noCategorySelected && (
         <ResetButton
           onClick={categoryResetHandler}

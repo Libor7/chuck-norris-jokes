@@ -4,12 +4,12 @@ import { type FC } from "react";
 /** STYLED COMPONENTS */
 import { StyledTypography } from "@shared/components/styled/StyledTypography";
 
-interface InfoText {
+interface TextProps {
   text: string;
 }
 
-const InfoText: FC<InfoText> = ({ text }) => {
+const Text: FC<TextProps> = ({ text }) => {
   return <StyledTypography component="p">{text}</StyledTypography>;
 };
 
-export default InfoText;
+export default Text;

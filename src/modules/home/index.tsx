@@ -1,8 +1,7 @@
 /** CUSTOM COMPONENTS */
 import ErrorMessage from "@shared/components/UI/ErrorMessage";
-import InfoText from "@shared/components/UI/InfoText";
-import Joke from "@home/components/Joke";
 import SearchField from "@shared/components/UI/SearchField";
+import Text from "@shared/components/UI/Text";
 
 /** LIBRARIES */
 import { useCallback, useEffect, useState } from "react";
@@ -48,6 +47,9 @@ const HomePage = () => {
       ? null
       : currentCategory;
   const { NO_JOKE_FOUND, SEARCH_BTN } = CONTENT.TEXT;
+  const textContent = currentJoke
+    ? currentJoke.value
+    : NO_JOKE_FOUND(searchedText);
 
   useEffect(() => {
     if (data) appDispatch(homeActions.setJoke(data));
@@ -85,11 +87,7 @@ const HomePage = () => {
         <StyledSearchButton fullWidth size="large" onClick={searchHandler}>
           {SEARCH_BTN.LABEL(btnLabel)}
         </StyledSearchButton>
-        {currentJoke ? (
-          <Joke />
-        ) : (
-          <InfoText text={NO_JOKE_FOUND(searchedText)} />
-        )}
+        <Text text={textContent} />
       </StyledGrid>
       <ErrorMessage closeHandler={errorCloseHandler} error={error} />
     </>
