@@ -49,7 +49,7 @@ const HomePage = () => {
   const { NO_JOKE_FOUND, SEARCH_BTN } = CONTENT.TEXT;
   const textContent = currentJoke
     ? currentJoke.value
-    : NO_JOKE_FOUND(searchedText);
+    : NO_JOKE_FOUND;
 
   useEffect(() => {
     if (data) appDispatch(homeActions.setJoke(data));
