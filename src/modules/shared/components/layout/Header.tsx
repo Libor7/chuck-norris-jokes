@@ -11,7 +11,8 @@ import NavigationMobile from "@shared/components/NavigationMobile";
 import useWindowSize from "@shared/hooks/useWindowSize";
 
 /** LIBRARIES */
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Outlet, useLocation } from "react-router";
 
 /** MODELS */
@@ -20,8 +21,6 @@ import { type ILink } from "@shared/models/miscellaneous";
 /** OTHER */
 import { useAppDispatch } from "@shared/store";
 import { sharedActions } from "@shared/store/shared";
-import { CONTENT } from "@shared/utils/content";
-
 /** STYLES */
 import styled from "styled-components";
 
@@ -33,27 +32,31 @@ const StyledToolbar = styled(Toolbar)`
   }
 `;
 
-const { CATEGORIES, HOME } = CONTENT.LINKS;
-
-const links: ILink[] = [
-  {
-    label: HOME.LABEL,
-    path: "home",
-  },
-  {
-    label: CATEGORIES.LABEL,
-    path: "categories",
-  },
-];
-
 const Header = () => {
   const appDispatch = useAppDispatch();
+  const { t } = useTranslation();
   const { pathname } = useLocation();
   const { windowWidth } = useWindowSize();
   const appBarRef = useRef<HTMLElement>(null);
 
+  const links: ILink[] = useMemo(
+    () => [
+      {
+        label: t("modules.shared.links.home.label"),
+        path: "home",
+      },
+      {
+        label: t("modules.shared.links.categories.label"),
+        path: "categories",
+      },
+    ],
+    [t]
+  );
+
   const wideScreen = windowWidth >= 600;
-  const nonactiveLinks = links.filter((link) => link.path !== pathname.slice(1));
+  const nonactiveLinks = links.filter(
+    (link) => link.path !== pathname.slice(1)
+  );
 
   useEffect(() => {
     if (appBarRef.current) {

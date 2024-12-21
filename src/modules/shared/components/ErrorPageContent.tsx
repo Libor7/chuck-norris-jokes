@@ -3,6 +3,7 @@ import Button from "@shared/components/UI/Button";
 
 /** LIBRARIES */
 import { type FC } from "react";
+import { useTranslation } from 'react-i18next';
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -11,7 +12,6 @@ import { type RootState } from "@shared/store";
 
 /** STYLES */
 import styled from "styled-components";
-import { CONTENT } from "@shared/utils/content";
 
 const notForwardProps = ["headerHeight"];
 
@@ -81,6 +81,7 @@ const ErrorPageContent: FC<ErrorPageContentProps> = ({
   statusCode,
 }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { appBarHeight } = useSelector(({ shared }: RootState) => shared);
 
   return (
@@ -90,7 +91,7 @@ const ErrorPageContent: FC<ErrorPageContentProps> = ({
         <p>{message}</p>
       </div>
       <StyledButton onClick={() => navigate("home", { replace: true })}>
-        {CONTENT.ERROR.NAVIGATE}
+        {t('modules.error.navigateBtnLabel')}
       </StyledButton>
     </StyledErrorContent>
   );

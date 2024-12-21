@@ -3,9 +3,7 @@ import Typography, { type TypographyProps } from "@mui/material/Typography";
 
 /** LIBRARIES */
 import { type FC } from "react";
-
-/** OTHER */
-import { CONTENT } from "@shared/utils/content";
+import { useTranslation } from 'react-i18next';
 
 /** STYLES */
 import styled from "styled-components";
@@ -15,12 +13,14 @@ const StyledHeading = styled(Typography)`
 `;
 
 const AppHeading: FC<TypographyProps> = (props) => {
+  const { t } = useTranslation();
+
   const component = props.component || "h1";
   const variant = props.variant || "h5";
 
   return (
     <StyledHeading variant={variant} component={component} {...props}>
-      {CONTENT.MAIN_HEADING}
+      {t('modules.shared.mainHeading')}
     </StyledHeading>
   );
 };

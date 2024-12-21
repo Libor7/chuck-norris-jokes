@@ -2,11 +2,11 @@
 import ErrorPageContent from "@shared/components/ErrorPageContent";
 import Header from "@shared/components/layout/Header";
 
+/** LIBRARIES */
+import { useTranslation } from 'react-i18next';
+
 /** MODELS */
 import { type ICustomError } from "@shared/models/api";
-
-/** OTHER */
-import { CONTENT } from "@shared/utils/content";
 
 import { type ErrorResponse, useRouteError } from "react-router";
 
@@ -22,10 +22,11 @@ const isCustomError = (error: any): error is ICustomError => {
 };
 
 const Error = () => {
+  const { t } = useTranslation();
   const error = useRouteError() as ErrorType;
 
   let statusCode = 500;
-  let errorMessage = CONTENT.ERROR.MESSAGE.GENERIC;
+  let errorMessage = t('modules.error.message.generic');
 
   if (error instanceof Response) {
     statusCode = error.status;

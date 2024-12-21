@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
+      "@assets/*": ["assets/*"],
       "@categories/*": ["modules/categories/*"],
       "@error/*": ["modules/error/*"],
       "@home/*": ["modules/home/*"],

@@ -10,6 +10,7 @@ import { ThemeProvider as SCThemeProvider } from "styled-components";
 
 /** OTHER */
 import store from "@shared/store/index.ts";
+import './i18n';
 
 /** STYLES */
 import "./index.css";

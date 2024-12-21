@@ -8,8 +8,8 @@ import { createBrowserRouter, Navigate, redirect } from "react-router";
 import { RouterProvider } from "react-router/dom";
 
 /** OTHER */
-import { loader as categoriesLoader } from "@categories/index";
-import { loader as homeLoader } from "@home/index";
+import { loader as categoriesLoader } from "@categories/loader";
+import { loader as homeLoader } from "@home/loader";
 
 /** STYLED COMPONENTS */
 import { StyledFallback } from "@shared/components/styled/StyledFallback";

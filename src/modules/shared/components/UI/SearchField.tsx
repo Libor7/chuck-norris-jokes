@@ -7,6 +7,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 
 /** LIBRARIES */
 import { type ChangeEvent, useCallback, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { useSelector } from "react-redux";
 
 /** MODERN */
@@ -15,7 +16,6 @@ import { type ClearIconDisplayType } from "@shared/models/miscellaneous";
 /** OTHER */
 import { type RootState, useAppDispatch } from "@shared/store";
 import { homeActions } from "@home/store/home";
-import { CONTENT } from "@home/utils/content";
 import { keyHandler } from "@shared/utils/helper";
 
 /** STYLED COMPONENTS */
@@ -30,6 +30,7 @@ const StyledClearIcon = styled(ClearIcon)`
 
 const SearchField = () => {
   const appDispatch = useAppDispatch();
+  const { t } = useTranslation();
   const { searchedText } = useSelector(({ home }: RootState) => home);
   const [showClearIcon, setShowClearIcon] =
     useState<ClearIconDisplayType>("none");
@@ -65,7 +66,7 @@ const SearchField = () => {
         ),
       }}
       onChange={changeHandler}
-      placeholder={CONTENT.TEXT.SEARCH_BTN.PLACEHOLDER}
+      placeholder={t("modules.home.searchBtn.placeholder")}
       type="search"
       value={searchedText}
     />

@@ -4,20 +4,17 @@ import CategoriesContent from "@categories/components/CategoriesContent";
 /** LIBRARIES */
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { type LoaderFunction, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 
 /** MODELS */
 import { Category } from "./models/store";
 
 /** OTHER */
 import { categoriesActions } from "@categories/store/categories";
-import { DOMAIN, PATHS } from "@shared/utils/constants";
+import { PATHS } from "@shared/utils/constants";
 import { type RootState, useAppDispatch } from "@shared/store";
 
-/** SERVICES */
-import { getData } from "@shared/services/api/chuckNorris";
-
-const categoriesUrl = `${DOMAIN}${PATHS.JOKES}${PATHS.CATEGORIES}`;
+export const categoriesUrl = `${import.meta.env.VITE_DOMAIN}${PATHS.JOKES}${PATHS.CATEGORIES}`;
 
 const CategoriesPage = () => {
   const appDispatch = useAppDispatch();
@@ -32,7 +29,3 @@ const CategoriesPage = () => {
 };
 
 export default CategoriesPage;
-
-export const loader: LoaderFunction = async () => {
-  return getData(categoriesUrl);
-};

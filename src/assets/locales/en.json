@@ -1,0 +1,50 @@
+{
+  "modules": {
+    "categories": {
+      "categorySelected": "{{text}} the {{selectedCategory}} theme",
+      "categoryTextOptions": {
+        "option1": "Great choice, you selected",
+        "option2": "Sounds interesting,",
+        "option3": "Hope you like jokes from",
+        "option4": "Nice,",
+        "option5": "Good one,",
+        "option6": "You picked",
+        "option7": "Now you will receive jokes from",
+        "option8": "This one is funny as well,",
+        "option9": "You switched to",
+        "option10": "One of the favorite,",
+        "option11": "I also like",
+        "option12": "Here you are",
+        "option13": "Wish you a lot of laugh with"
+      },
+      "heading": "Categories",
+      "hint": "Select a category of Jokes to narrow down the topic",
+      "resetBtnLabel": "Deselect"
+    },
+    "error": {
+      "navigateBtnLabel": "Back to Home Page",
+      "message": {
+        "dataFetch": "Failed to load the data",
+        "generic": "Unknown - likely a server-side error occured, please check your browser console, or try again later."
+      }
+    },
+    "home": {
+      "noJokeFound": "No joke could be found for the specified string, please try to enter different text",
+      "searchBtn": {
+        "label": "Find {{content}} Joke",
+        "placeholder": "Find by text ... "
+      }
+    },
+    "shared": {
+      "links": {
+        "home": {
+          "label": "Home"
+        },
+        "categories": {
+          "label": "Categories"
+        }
+      },
+      "mainHeading": "Chuck Norris Jokes"
+    }
+  }
+}

@@ -4,9 +4,10 @@ import SearchField from "@shared/components/UI/SearchField";
 import Text from "@shared/components/UI/Text";
 
 /** LIBRARIES */
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { type LoaderFunction, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 
 /** MODELS */
 import { Category } from "@categories/models/store";
@@ -14,8 +15,7 @@ import { type IJoke } from "@home/models/store";
 import { type ICustomError, type ISearchResponse } from "@shared/models/api";
 
 /** OTHER */
-import { DOMAIN, PATHS } from "@shared/utils/constants";
-import { CONTENT } from "@home/utils/content";
+import { PATHS } from "@shared/utils/constants";
 import { getRandomArrayItem } from "@shared/utils/helper";
 import { type RootState, useAppDispatch } from "@shared/store";
 import { homeActions } from "@home/store/home";
@@ -27,11 +27,12 @@ import { getData } from "@shared/services/api/chuckNorris";
 import { StyledSearchButton } from "@home/components/styled/StyledSearchButton";
 import { StyledGrid } from "@shared/components/styled/StyledGrid";
 
-const randomJokeUrl = `${DOMAIN}${PATHS.JOKES}${PATHS.RANDOM}`;
-const textSearchUrl = `${DOMAIN}${PATHS.JOKES}${PATHS.SEARCH}`;
+export const randomJokeUrl = `${import.meta.env.VITE_DOMAIN}${PATHS.JOKES}${PATHS.RANDOM}`;
+const textSearchUrl = `${import.meta.env.VITE_DOMAIN}${PATHS.JOKES}${PATHS.SEARCH}`;
 
 const HomePage = () => {
   const appDispatch = useAppDispatch();
+  const { t } = useTranslation();
   const data = useLoaderData<IJoke>();
   const { currentCategory } = useSelector(
     ({ categories }: RootState) => categories
@@ -42,14 +43,18 @@ const HomePage = () => {
   const { appBarHeight } = useSelector(({ shared }: RootState) => shared);
   const [error, setError] = useState<string | null>(null);
 
-  const btnLabel =
-    searchedText.length > 0 || currentCategory === Category.ALL
-      ? null
-      : currentCategory;
-  const { NO_JOKE_FOUND, SEARCH_BTN } = CONTENT.TEXT;
-  const textContent = currentJoke
-    ? currentJoke.value
-    : NO_JOKE_FOUND;
+  const btnLabel = useMemo(
+    () =>
+      searchedText.length > 0 || currentCategory === Category.ALL
+        ? "some "
+        : currentCategory,
+    [currentCategory, searchedText.length]
+  );
+
+  const textContent = useMemo(
+    () => (currentJoke ? currentJoke.value : t("modules.home.noJokeFound")),
+    [currentJoke, t]
+  );
 
   useEffect(() => {
     if (data) appDispatch(homeActions.setJoke(data));
@@ -85,7 +90,7 @@ const HomePage = () => {
       <StyledGrid headerHeight={appBarHeight}>
         <SearchField />
         <StyledSearchButton fullWidth size="large" onClick={searchHandler}>
-          {SEARCH_BTN.LABEL(btnLabel)}
+          {t("modules.home.searchBtn.label", { content: btnLabel })}
         </StyledSearchButton>
         <Text text={textContent} />
       </StyledGrid>
@@ -95,7 +100,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-export const loader: LoaderFunction = async () => {
-  return getData(randomJokeUrl);
-};

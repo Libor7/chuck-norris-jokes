@@ -29,12 +29,16 @@ export const StyledNavLink = styled(NavLink).withConfig({
 
   &:focus,
   &:focus-visible {
-    background-color: ${({ theme }) => theme.palette.primary.dark};
     outline: none;
   }
 
   ${({ theme }) => theme.breakpoints.up("sm")} {
     padding: 1em;
+
+    &:focus,
+    &:focus-visible {
+      background-color: ${({ theme }) => theme.palette.primary.dark};
+    }
 
     &:hover {
       background-color: ${({ theme }) => theme.palette.primary.dark};

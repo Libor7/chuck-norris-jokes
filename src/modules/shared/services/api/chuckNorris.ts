@@ -1,8 +1,10 @@
+/** LIBRARIES */
+import i18next from "i18next";
+
 /** MODELS */
 import { type UrlParam } from "@shared/models/api";
 
 /** OTHER */
-import { CONTENT } from "@shared/utils/content";
 import { appendUrlParams } from "@shared/utils/helper";
 
 export const getData = async (url: string, param?: UrlParam) => {
@@ -10,9 +12,10 @@ export const getData = async (url: string, param?: UrlParam) => {
   const response = await fetch(parsedUrl);
 
   if (!response.ok) {
+    const message = i18next.t("modules.error.message.dataFetch");
     throw {
       status: response.status,
-      message: CONTENT.ERROR.MESSAGE.DATA_FETCH,
+      message,
     };
   }
 
