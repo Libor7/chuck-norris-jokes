@@ -25,7 +25,7 @@ import { StyledSearchField } from "@shared/components/styled/StyledSearchField";
 import styled from "styled-components";
 
 const StyledClearIcon = styled(ClearIcon)`
-  color: ${({ theme }) => theme.palette.warning.main};
+  color: ${({ theme }) => theme.palette.secondary.main};
 `;
 
 const SearchField = () => {
