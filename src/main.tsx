@@ -15,7 +15,7 @@ import './i18n';
 /** STYLES */
 import "./index.css";
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     primary: {
       main: "#4056a1",
